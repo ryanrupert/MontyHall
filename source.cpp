@@ -52,6 +52,78 @@ int main(int argc, char* argv[])
 		{
 			std::cin >> player;
 		}
+
+		switch (door)
+		{
+			case 1:
+				switch (player)
+				{
+					case 1:
+						(!sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
+						switched = 3;
+						break;
+					case 2:
+						(!sim) ? std::cout << "." : std::cout << "Door 3 was removed" << std::endl;
+						switched = 1;
+						break;
+					case 3:
+						(!sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
+						switched = 1;
+						break;
+					default:
+						std::cout << "Please try again" << std::endl;
+						return 1;
+						break;
+				}
+				break;
+			case 2:
+				switch (player)
+				{
+					case 1:
+						(!sim) ? std::cout << "." : std::cout << "Door 3 was removed" << std::endl;
+						switched = 2;
+						break;
+					case 2:
+						(!sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						switched = 3;
+						break;
+					case 3:
+						(!sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						switched = 2;
+						break;
+					default:
+						std::cout << "Please try again" << std::endl;
+						return 1;
+						break;
+				}
+				break;
+			case 3:
+				switch (player)
+				{
+					case 1:
+						(!sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
+						switched = 3;
+						break;
+					case 2:
+						(!sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						switched = 3;
+						break;
+					case 3:
+						(!sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						switched = 2;
+						break;
+					default:
+						std::cout << "Please try again" << std::endl;
+						return 1;
+						break;
+				}
+				break;
+			default:
+				std::cout << "Random Generator Error" << std::endl;
+				return 2;
+				break;
+		}
+
 	}while(count < simCount || tolower(rerun) == 'y');
 	
 	return 0;
