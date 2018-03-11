@@ -10,6 +10,7 @@
 #include <chrono>
 #include <random>
 #include <time.h>
+#include <string.h>
 
 uint32_t seedseq_random_using_clock()
 {
@@ -22,7 +23,7 @@ uint32_t seedseq_random_using_clock()
     return out;
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char **argv)
 {
 	srand(time(NULL));
 
@@ -38,6 +39,13 @@ int main(int argc, char* argv[])
 	char rerun = 'n';
 
 	//place the argument code here
+	if (!strcmp(argv[1], "-s")) 
+	{
+		sim = true;
+		simCount = atoi(argv[1 + 1]);
+		std::cout << "simulation: " << sim << std::endl;
+		std::cout << "count: " << simCount << std::endl;
+	}
 
 	do
 	{
