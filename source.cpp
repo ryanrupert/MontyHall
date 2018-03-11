@@ -148,6 +148,16 @@ int main(int argc, char* argv[])
 			(!sim) ? std::cout << "." : std::cout << "You lose" << std::endl;
 			loss++;
 		}
+
+		(!sim) ? std::cout << "." : std::cout << "Would you like to run the program again?(y or n)" << std::endl;
+		if (!sim) 
+		{
+			count++;
+		}
+		else
+		{
+			std::cin >> rerun;
+		}
 	}while(count < simCount || tolower(rerun) == 'y');
 	
 	return 0;
