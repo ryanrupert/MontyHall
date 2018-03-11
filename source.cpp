@@ -43,8 +43,8 @@ int main(int argc, char* argv[])
 	{
 		door = seedseq_random_using_clock() % 3 + 1;
 
-		std::cout << "Enter a door?(1-3)" << std::endl;
-		if (!sim) 
+		(sim) ? std::cout << "." : std::cout << "Enter a door?(1-3)" << std::endl;
+		if (sim) 
 		{
 			player = (rand() + seedseq_random_using_clock()) % 3 + 1;
 		}
@@ -59,15 +59,15 @@ int main(int argc, char* argv[])
 				switch (player)
 				{
 					case 1:
-						(!sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
+						(sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
 						switched = 3;
 						break;
 					case 2:
-						(!sim) ? std::cout << "." : std::cout << "Door 3 was removed" << std::endl;
+						(sim) ? std::cout << "." : std::cout << "Door 3 was removed" << std::endl;
 						switched = 1;
 						break;
 					case 3:
-						(!sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
+						(sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
 						switched = 1;
 						break;
 					default:
@@ -80,15 +80,15 @@ int main(int argc, char* argv[])
 				switch (player)
 				{
 					case 1:
-						(!sim) ? std::cout << "." : std::cout << "Door 3 was removed" << std::endl;
+						(sim) ? std::cout << "." : std::cout << "Door 3 was removed" << std::endl;
 						switched = 2;
 						break;
 					case 2:
-						(!sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						(sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
 						switched = 3;
 						break;
 					case 3:
-						(!sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						(sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
 						switched = 2;
 						break;
 					default:
@@ -101,15 +101,15 @@ int main(int argc, char* argv[])
 				switch (player)
 				{
 					case 1:
-						(!sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
+						(sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
 						switched = 3;
 						break;
 					case 2:
-						(!sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						(sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
 						switched = 3;
 						break;
 					case 3:
-						(!sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						(sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
 						switched = 2;
 						break;
 					default:
@@ -124,8 +124,15 @@ int main(int argc, char* argv[])
 				break;
 		}
 
-		(!sim) ? std::cout << "." : std::cout << "Would you like to stay or switch" << std::endl;
-		choice = (rand() + seedseq_random_using_clock()) % 2 + 1;
+		(sim) ? std::cout << "." : std::cout << "Would you like to stay or switch" << std::endl;
+		if (sim) 
+		{
+			choice = (rand() + seedseq_random_using_clock()) % 2 + 1;
+		}
+		else
+		{
+			std::cin >> choice;
+		}
 
 		switch (choice)
 		{
@@ -140,17 +147,17 @@ int main(int argc, char* argv[])
 
 		if (door == player) 
 		{
-			(!sim) ? std::cout << "." : std::cout << "You win" << std::endl;
+			(sim) ? std::cout << "." : std::cout << "You win" << std::endl;
 			win++;
 		}
 		else
 		{
-			(!sim) ? std::cout << "." : std::cout << "You lose" << std::endl;
+			(sim) ? std::cout << "." : std::cout << "You lose" << std::endl;
 			loss++;
 		}
 
-		(!sim) ? std::cout << "." : std::cout << "Would you like to run the program again?(y or n)" << std::endl;
-		if (!sim) 
+		(sim) ? std::cout << "." : std::cout << "Would you like to run the program again?(y or n)" << std::endl;
+		if (sim) 
 		{
 			count++;
 		}
