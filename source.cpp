@@ -137,6 +137,17 @@ int main(int argc, char* argv[])
 			default:
 				break;
 		}
+
+		if (door == player) 
+		{
+			(!sim) ? std::cout << "." : std::cout << "You win" << std::endl;
+			win++;
+		}
+		else
+		{
+			(!sim) ? std::cout << "." : std::cout << "You lose" << std::endl;
+			loss++;
+		}
 	}while(count < simCount || tolower(rerun) == 'y');
 	
 	return 0;
