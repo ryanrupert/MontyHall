@@ -166,6 +166,14 @@ int main(int argc, char* argv[])
 			std::cin >> rerun;
 		}
 	}while(count < simCount || tolower(rerun) == 'y');
+
+	if (sim) 
+	{
+		std::cout << "\nWins: " << win << std::endl;
+		std::cout << "Loss: " << loss << std::endl;
+		std::cout << "Rounds: " << simCount << std::endl;
+		std::cin.get();
+	}
 	
 	return 0;
 }
