@@ -124,6 +124,8 @@ int main(int argc, char* argv[])
 				break;
 		}
 
+		(!sim) ? std::cout << "." : std::cout << "Would you like to stay or switch" << std::endl;
+		choice = (rand() + seedseq_random_using_clock()) % 2 + 1;
 	}while(count < simCount || tolower(rerun) == 'y');
 	
 	return 0;
