@@ -24,5 +24,18 @@ uint32_t seedseq_random_using_clock()
 
 int main(int argc, char* argv[])
 {
+	srand(time(NULL));
+
+	int door = 0;
+	int player = 0;
+	int switched = 0;
+	int choice = 0;
+	bool sim = true;
+	int simCount = 0;
+	int win = 0;
+	int loss = 0;
+	int count = 0;
+	char rerun = ' ';
+	
 	return 0;
 }
