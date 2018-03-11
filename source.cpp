@@ -41,6 +41,17 @@ int main(int argc, char* argv[])
 
 	do
 	{
+		door = seedseq_random_using_clock() % 3 + 1;
+
+		std::cout << "Enter a door?(1-3)" << std::endl;
+		if (!sim) 
+		{
+			player = (rand() + seedseq_random_using_clock()) % 3 + 1;
+		}
+		else
+		{
+			std::cin >> player;
+		}
 	}while(count < simCount || tolower(rerun) == 'y');
 	
 	return 0;
