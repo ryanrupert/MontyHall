@@ -36,6 +36,12 @@ int main(int argc, char* argv[])
 	int loss = 0;
 	int count = 0;
 	char rerun = ' ';
+
+	//place the argument code here
+
+	do
+	{
+	}while(count < simCount || tolower(rerun) == 'y');
 	
 	return 0;
 }
