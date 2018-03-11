@@ -21,3 +21,8 @@ uint32_t seedseq_random_using_clock()
     seeder.generate(&out,&out+1);
     return out;
 }
+
+int main(int argc, char* argv[])
+{
+	return 0;
+}
