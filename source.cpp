@@ -30,12 +30,12 @@ int main(int argc, char* argv[])
 	int player = 0;
 	int switched = 0;
 	int choice = 0;
-	bool sim = true;
+	bool sim = false;
 	int simCount = 0;
 	int win = 0;
 	int loss = 0;
 	int count = 0;
-	char rerun = ' ';
+	char rerun = 'n';
 
 	//place the argument code here
 
