@@ -55,7 +55,7 @@ void error(std::string msg)
 
 int main(int argc, char **argv)
 {
-	srand(time(NULL));
+	srand(seedseq_random_using_clock());
 
 	int door = 0;
 	int player = 0;
@@ -95,12 +95,12 @@ int main(int argc, char **argv)
 
 	do
 	{
-		door = seedseq_random_using_clock() % 3 + 1;
+		door = rand() % 3 + 1;
 
 		(sim) ? std::cout << "." : std::cout << "Enter a door?(1-3)" << std::endl;
 		if (sim) 
 		{
-			player = (rand() + seedseq_random_using_clock()) % 3 + 1;
+			player = rand() % 3 + 1;
 		}
 		else
 		{
@@ -181,7 +181,7 @@ int main(int argc, char **argv)
 		(sim) ? std::cout << "." : std::cout << "Would you like to stay or switch" << std::endl;
 		if (sim) 
 		{
-			choice = (rand() + seedseq_random_using_clock()) % 2 + 1;
+			choice = rand() % 2 + 1;
 		}
 		else
 		{
