@@ -74,7 +74,8 @@ int main(int argc, char **argv)
 		if (!strcmp(argv[i], "-s")) 
 		{
 			sim = true;
-			simCount = atoi(argv[i + 1]);
+			i++;
+			simCount = atoi(argv[i]);
 			if (simCount <= 0) 
 			{
 				error("the number must be non-zero");
