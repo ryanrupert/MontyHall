@@ -32,6 +32,27 @@ uint32_t seedseq_random_using_clock()
 	return out;
 }
 
+void help()
+{
+	std::cout << "usage: a [arguments]" << std::endl;
+	std::cout << std::endl;
+	std::cout << "arguments:" << std::endl;
+	std::cout << "-s [number]		Run in simulation mode. Non-zero number required." << std::endl;
+	std::cout << "-h, --help		Display help screen." << std::endl;
+}
+
+void error()
+{
+	std::cout << "argument not recognized." << std::endl;
+	help();
+}
+
+void error(std::string msg)
+{
+	std::cout << msg << std::endl;
+	help();
+}
+
 int main(int argc, char **argv)
 {
 	srand(time(NULL));
@@ -47,13 +68,29 @@ int main(int argc, char **argv)
 	int count = 0;
 	char rerun = 'n';
 
-	//place the argument code here
-	if (!strcmp(argv[1], "-s")) 
+	//this is the section that will get the command line arguments
+	for (int i = 1; i < argc; i++) 
 	{
-		sim = true;
-		simCount = atoi(argv[1 + 1]);
-		std::cout << "simulation: " << sim << std::endl;
-		std::cout << "count: " << simCount << std::endl;
+		if (!strcmp(argv[i], "-s")) 
+		{
+			sim = true;
+			simCount = atoi(argv[i + 1]);
+			if (simCount <= 0) 
+			{
+				error("the number must be non-zero");
+				return 3;
+			}
+		}
+		else if (!strcmp(argv[i], "-h") || !strcmp(argv[i], "--help"))
+		{
+			help();
+			return 0;
+		}
+		else
+		{
+			error();
+			return 3;
+		}
 	}
 
 	do
