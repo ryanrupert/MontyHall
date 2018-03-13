@@ -12,6 +12,7 @@
 #include <time.h>
 #include <string.h>
 
+#define output(msg) simulationOutput(suppress, sim, msg)
 
 /************************************
 * Copied
@@ -38,6 +39,7 @@ void help()
 	std::cout << std::endl;
 	std::cout << "arguments:" << std::endl;
 	std::cout << "-s [number]		Run in simulation mode. Non-zero number required." << std::endl;
+	std::cout << "-u			This will suppress output." << std::endl;
 	std::cout << "-h, --help		Display help screen." << std::endl;
 }
 
@@ -51,6 +53,21 @@ void error(std::string msg)
 {
 	std::cout << msg << std::endl;
 	help();
+}
+
+void simulationOutput(bool suppress, bool sim, std::string msg)
+{
+	if (!suppress) 
+	{
+		if (sim) 
+		{
+			std::cout << ".";
+		}
+		else
+		{
+			std::cout << msg << std::endl;
+		}
+	}
 }
 
 int main(int argc, char **argv)
@@ -67,6 +84,7 @@ int main(int argc, char **argv)
 	int loss = 0;
 	int count = 0;
 	char rerun = 'n';
+	bool suppress = false;
 
 	//this is the section that will get the command line arguments
 	for (int i = 1; i < argc; i++) 
@@ -82,6 +100,10 @@ int main(int argc, char **argv)
 				return 3;
 			}
 		}
+		else if (!strcmp(argv[i], "-u"))
+		{
+			suppress = true;
+		}
 		else if (!strcmp(argv[i], "-h") || !strcmp(argv[i], "--help"))
 		{
 			help();
@@ -93,12 +115,17 @@ int main(int argc, char **argv)
 			return 3;
 		}
 	}
+	if (suppress && !sim) 
+	{
+		error("must be used with simulation mode");
+		return 3;
+	}
 
 	do
 	{
 		door = rand() % 3 + 1;
 
-		(sim) ? std::cout << "." : std::cout << "Enter a door?(1-3)" << std::endl;
+		output("Enter a door?(1-3)");
 		if (sim) 
 		{
 			player = rand() % 3 + 1;
@@ -114,15 +141,15 @@ int main(int argc, char **argv)
 				switch (player)
 				{
 					case 1:
-						(sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
+						output("Door 2 was removed");
 						switched = 3;
 						break;
 					case 2:
-						(sim) ? std::cout << "." : std::cout << "Door 3 was removed" << std::endl;
+						output("Door 3 was removed");
 						switched = 1;
 						break;
 					case 3:
-						(sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
+						output("Door 2 was removed");
 						switched = 1;
 						break;
 					default:
@@ -135,15 +162,15 @@ int main(int argc, char **argv)
 				switch (player)
 				{
 					case 1:
-						(sim) ? std::cout << "." : std::cout << "Door 3 was removed" << std::endl;
+						output("Door 3 was removed");
 						switched = 2;
 						break;
 					case 2:
-						(sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						output("Door 1 was removed");
 						switched = 3;
 						break;
 					case 3:
-						(sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						output("Door 1 was removed");
 						switched = 2;
 						break;
 					default:
@@ -156,15 +183,15 @@ int main(int argc, char **argv)
 				switch (player)
 				{
 					case 1:
-						(sim) ? std::cout << "." : std::cout << "Door 2 was removed" << std::endl;
+						output("Door 2 was removed");
 						switched = 3;
 						break;
 					case 2:
-						(sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						output("Door 1 was removed");
 						switched = 3;
 						break;
 					case 3:
-						(sim) ? std::cout << "." : std::cout << "Door 1 was removed" << std::endl;
+						output("Door 1 was removed");
 						switched = 2;
 						break;
 					default:
@@ -179,7 +206,7 @@ int main(int argc, char **argv)
 				break;
 		}
 
-		(sim) ? std::cout << "." : std::cout << "Would you like to stay or switch" << std::endl;
+		output("Would you like to stay or switch");
 		if (sim) 
 		{
 			choice = rand() % 2 + 1;
@@ -202,16 +229,16 @@ int main(int argc, char **argv)
 
 		if (door == player) 
 		{
-			(sim) ? std::cout << "." : std::cout << "You win" << std::endl;
+			output("You win");
 			win++;
 		}
 		else
 		{
-			(sim) ? std::cout << "." : std::cout << "You lose" << std::endl;
+			output("You lose");
 			loss++;
 		}
 
-		(sim) ? std::cout << "." : std::cout << "Would you like to run the program again?(y or n)" << std::endl;
+		output("Would you like to run the program again?(y or n)");
 		if (sim) 
 		{
 			count++;
